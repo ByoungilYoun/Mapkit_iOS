@@ -16,6 +16,7 @@
 		0F513D8126CCA30D0096AA0F /* Mapkit_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F513D8026CCA30D0096AA0F /* Mapkit_iOSTests.swift */; };
 		0F513D8C26CCA30D0096AA0F /* Mapkit_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F513D8B26CCA30D0096AA0F /* Mapkit_iOSUITests.swift */; };
 		0F513D9B26CCA4100096AA0F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0F513D9A26CCA4100096AA0F /* SnapKit */; };
+		0F6982EC26CD0BC5002B1F88 /* CoffeeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6982EB26CD0BC5002B1F88 /* CoffeeAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		0F513D8726CCA30D0096AA0F /* Mapkit_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Mapkit_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F513D8B26CCA30D0096AA0F /* Mapkit_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapkit_iOSUITests.swift; sourceTree = "<group>"; };
 		0F513D8D26CCA30D0096AA0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F6982EB26CD0BC5002B1F88 /* CoffeeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				0F513D6926CCA30C0096AA0F /* AppDelegate.swift */,
 				0F513D6B26CCA30C0096AA0F /* SceneDelegate.swift */,
+				0F6982EB26CD0BC5002B1F88 /* CoffeeAnnotation.swift */,
 				0F513D6D26CCA30C0096AA0F /* ViewController.swift */,
 				0F513D6F26CCA30C0096AA0F /* Main.storyboard */,
 				0F513D7226CCA30D0096AA0F /* Assets.xcassets */,
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F6982EC26CD0BC5002B1F88 /* CoffeeAnnotation.swift in Sources */,
 				0F513D6E26CCA30C0096AA0F /* ViewController.swift in Sources */,
 				0F513D6A26CCA30C0096AA0F /* AppDelegate.swift in Sources */,
 				0F513D6C26CCA30C0096AA0F /* SceneDelegate.swift in Sources */,

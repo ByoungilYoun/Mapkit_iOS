@@ -95,10 +95,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
   }
   
   @objc func handleAnnotationButton() {
-    let annotation = MKPointAnnotation()
+    let annotation = CoffeeAnnotation()
     annotation.coordinate = CLLocationCoordinate2D(latitude: 37.498244, longitude: 127.039423)
     annotation.title = "Coffee Shop"
     annotation.subtitle = "Get your delicious coffee!"
+    annotation.imageURL = "coffee-pin"
     self.mapView.addAnnotation(annotation)
   }
 }
@@ -108,5 +109,28 @@ extension ViewController : MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
     let region = MKCoordinateRegion(center: mapView.userLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008))
     mapView.setRegion(region, animated: true)
+  }
+  
+  // 커스텀 annotation 할때 쓰는 delegate 함수
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    
+    if annotation is MKUserLocation { // 이걸 해줘야 파란색 현재 위치 어노테이션이 생긴다.
+      return nil
+    }
+    
+    var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")
+    
+    if coffeeAnnotationView == nil {
+      coffeeAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView")
+      coffeeAnnotationView?.canShowCallout = true
+    } else {
+      coffeeAnnotationView?.annotation = annotation
+    }
+    
+    if let coffeeAnnotation = annotation as? CoffeeAnnotation {
+      coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
+    }
+    
+    return coffeeAnnotationView
   }
 }
