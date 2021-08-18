@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import MapKit
+import SnapKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
   //MARK: - Properties
+  
+  private let mapView = MKMapView()
+  
+  private let locationManager = CLLocationManager()
   
   //MARK: - Lifecycle
   override func viewDidLoad() {
@@ -19,8 +26,16 @@ class ViewController: UIViewController {
 
   //MARK: - Functions
   private func configureUI() {
-    view.backgroundColor = .blue
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.distanceFilter = kCLDistanceFilterNone
+    locationManager.startUpdatingLocation()
+    locationManager.requestWhenInUseAuthorization()
+    self.mapView.showsUserLocation = true
+    
+    view.addSubview(mapView)
+    mapView.snp.makeConstraints {
+      $0.top.leading.trailing.bottom.equalToSuperview()
+    }
   }
-
 }
-
