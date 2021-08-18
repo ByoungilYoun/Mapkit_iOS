@@ -18,7 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
   
   private let locationManager = CLLocationManager()
   
-  let mapTypeSegmentControl : UISegmentedControl = {
+  private let mapTypeSegmentControl : UISegmentedControl = {
     let sg = UISegmentedControl()
     sg.insertSegment(withTitle: "Map", at: 0, animated: true)
     sg.insertSegment(withTitle: "Satelite", at: 1, animated: true)
@@ -29,6 +29,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     sg.setTitleTextAttributes([.foregroundColor : UIColor.blue], for: .normal)
     sg.setTitleTextAttributes([.foregroundColor : UIColor.white], for: .selected)
     return sg
+  }()
+  
+  private let addAnnotationButton : UIButton = {
+    let bt = UIButton()
+    bt.setTitle("Add Annotation", for: .normal)
+    bt.setTitleColor(.blue, for: .normal)
+    bt.backgroundColor = .white
+    bt.layer.cornerRadius = 5
+    bt.addTarget(self, action: #selector(handleAnnotationButton), for: .touchUpInside)
+    return bt
   }()
   
   //MARK: - Lifecycle
@@ -50,9 +60,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     self.mapView.showsUserLocation = true
     
-    view.addSubview(mapView)
+    [mapView, addAnnotationButton].forEach {
+      view.addSubview($0)
+    }
+    
     mapView.snp.makeConstraints {
       $0.top.leading.trailing.bottom.equalToSuperview()
+    }
+    
+    addAnnotationButton.snp.makeConstraints {
+      $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+      $0.centerX.equalToSuperview()
+      $0.width.equalTo(300)
+      $0.height.equalTo(50)
     }
   }
   
@@ -72,6 +92,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     case 2 : self.mapView.mapType = .hybrid
     default : self.mapView.mapType = .standard
     }
+  }
+  
+  @objc func handleAnnotationButton() {
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = CLLocationCoordinate2D(latitude: 37.498244, longitude: 127.039423)
+    annotation.title = "Coffee Shop"
+    annotation.subtitle = "Get your delicious coffee!"
+    self.mapView.addAnnotation(annotation)
   }
 }
 
