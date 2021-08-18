@@ -118,18 +118,21 @@ extension ViewController : MKMapViewDelegate {
       return nil
     }
     
-    var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")
+    var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView") as? MKMarkerAnnotationView
     
     if coffeeAnnotationView == nil {
-      coffeeAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView")
+      coffeeAnnotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView") // 기본
+      coffeeAnnotationView?.glyphText = "하하하" // 핀 안에 글씨 넣기
+      coffeeAnnotationView?.markerTintColor = UIColor.purple
+      coffeeAnnotationView?.glyphTintColor = UIColor.white
       coffeeAnnotationView?.canShowCallout = true
     } else {
       coffeeAnnotationView?.annotation = annotation
     }
     
-    if let coffeeAnnotation = annotation as? CoffeeAnnotation {
-      coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
-    }
+//    if let coffeeAnnotation = annotation as? CoffeeAnnotation {
+//      coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
+//    }
     
     return coffeeAnnotationView
   }
